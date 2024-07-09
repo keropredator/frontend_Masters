@@ -51,7 +51,73 @@
             background-color: lightpink;
         }
     </style>
-  <link rel="stylesheet" type="text/css" href="chrome-extension://gobpkdmjnhpopmpddhmhmbhkiienpfdo/css/translate_popup.css"><style>.overlay-container[data-v-90367226]{bottom:0;-moz-column-gap:0;column-gap:0;display:grid;grid-template-columns:var(--b8f9171a);left:0;position:fixed;right:0;row-gap:0;top:0;z-index:var(--ef484772)}.overlay[data-v-90367226]{background-color:rgba(0,0,0,.33);height:100%;width:100%;z-index:1}.overlay-center[data-v-90367226]{-moz-column-gap:0;column-gap:0;display:grid;grid-template-rows:var(--12361785);row-gap:0}</style><style id="injected-pragma-style-b089ro">@charset "utf-8";.pragma-slider{user-select:none;cursor:grab}.pragma-slider:active{cursor:grabbing}.pragma-slider-bg{width:100%;height:5px;background:#6F6F6F;border-radius:15px}.pragma-slider-bar{height:100%;width:100%;background:#2B6CCE;position:relative;transition:all .05s ease;border-radius:15px}.pragma-slider-thumb{width:5px;height:18px;background:#2b6cce;transition:all .05s ease;position:absolute;right:0;top:50%;bottom:50%;margin:auto}.slider-display{text-align:center;padding-bottom:20px}</style><style id="injected-pragma-style-cvexj8">
+  <style>
+  .overlay-container[data-v-90367226] {
+      bottom: 0;
+      -moz-column-gap: 0;
+      column-gap: 0;
+      display: grid;
+      grid-template-columns: var(--b8f9171a);
+      left: 0;
+      position: fixed;
+      right: 0;
+      row-gap: 0;
+      top: 0;
+      z-index: var(--ef484772);
+  }
+  .overlay[data-v-90367226] {
+      background-color: rgba(0,0,0,.33);
+      height: 100%;
+      width: 100%;
+      z-index: 1;
+  }
+  .overlay-center[data-v-90367226] {
+      -moz-column-gap: 0;
+      column-gap: 0;
+      display: grid;
+      grid-template-rows: var(--12361785);
+      row-gap: 0;
+  }
+  </style>
+  <style id="injected-pragma-style-b089ro">
+  @charset "utf-8";
+  .pragma-slider {
+      user-select: none;
+      cursor: grab;
+  }
+  .pragma-slider:active {
+      cursor: grabbing;
+  }
+  .pragma-slider-bg {
+      width: 100%;
+      height: 5px;
+      background: #6F6F6F;
+      border-radius: 15px;
+  }
+  .pragma-slider-bar {
+      height: 100%;
+      width: 100%;
+      background: #2B6CCE;
+      position: relative;
+      transition: all .05s ease;
+      border-radius: 15px;
+  }
+  .pragma-slider-thumb {
+      width: 5px;
+      height: 18px;
+      background: #2b6cce;
+      transition: all .05s ease;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      bottom: 50%;
+      margin: auto;
+  }
+  .slider-display {
+      text-align: center;
+      padding-bottom: 20px;
+  }
+  </style>
     .revert-all {
         all: initial !important;
     }
@@ -64,7 +130,6 @@
 
     <main>
     <div id="statement">
-        
     </div>
 
     <div id="options">
@@ -85,28 +150,45 @@
 
     // TODO 1: Declare & assign variables pointing to the corresponding element(s)
     // statement should be the "statement" div
-    // optionButtons should be all the elements within the "options" div
-    // explanation should be the "explanation" div
+      const statement = document.getElementById("statement")
 
+    // optionButtons should be all the elements within the "options" div
+      const optionButtons = document.getElementById("#options button")
+
+    // explanation should be the "explanation" div
+      const explanation = document.getElementById("explanation")  
 
     // TODO 2: Declare & assign a variable called fact
-    // Its value should be an object with a statement, true/false answer, and explanation 
+    // Its value should be an object with a statement, true/false answer, and explanation
     
+    const fact = {
+      statement :  "JavaScript is a programming language",
+      answer : true,
+      explanation : "JavaScript is a programming language that enables you to interact with web pages. It is used to create dynamic content, control multimedia, animate images, and much more."
+    }
 
-    
     // TODO 3: Set the text of the statement element to the fact's statement
 
-        
+    statement.textContent= fact.statement;
 
     // TODO 4: Declare disable & enable functions to set or remove the "disabled" attribute from a given button element
     // disable(button) should set the button element's attribute "disabled" to the value ""
     // enable(button) should remove the attribute "disabled" from the button element
 
+    const disable = (button) => {
+      button.setAttribute("disabled", "")
+    }
+    const enable = (button) => 
+button.removeAttribute("disabled")
+    
 
 
     // TODO 5: Declare an isCorrect function that compares a guess to the right answer
     // isCorrect(guess) should return true if the guess matches the fact's answer
-    
+
+    const isCorrect = (guess) => {
+      return guess === fact.answer
+    }
 
 
     // TODO 6A: Use a for loop to add a click event listener to each of the optionButtons
@@ -323,7 +405,7 @@
     cursor: pointer;
 }
 .ScreenityDropdownMenuItem[data-disabled] {
-  color: #6E7684; !important;
+  color: #6E7684 !important;
   cursor: not-allowed;
   background-color: #F6F7FB !important;
 }
